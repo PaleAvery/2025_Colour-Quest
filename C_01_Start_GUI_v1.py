@@ -77,11 +77,8 @@ class StartGame:
         try:
             rounds_wanted = int(rounds_wanted)
             if rounds_wanted > 0:
-                # invijes play class and take across number of rounds
-                Play(rounds_wanted)
-                # hide root window (hide the rounds choice window )
-                root.withdraw()
-
+                # temperary success message replace with call ro playgame class
+                self.choose_label.config(text=f"you have chosen to play {rounds_wanted} round(s)")
             else:
                 has_errors = "yes"
 
@@ -94,33 +91,6 @@ class StartGame:
                                      font=("Arial",10,"bold"))
             self.num_rounds_entry.config(bg="#F4CCCC")
             self.num_rounds_entry.delete(0,END)
-
-class Play:
-    """
-    Interface for playing the colour quest game
-    """
-
-    def __init__(self, how_many):
-        self.play_box = Toplevel()
-
-        self.game_frame = Frame(self.play_box)
-        self.game_frame.grid(padx=10, pady=10)
-
-        self.game_heading_label = Label(self.game_frame, text=f"round 0 of {how_many}",
-                                        font=("Arial",16,"bold"))
-        self.game_heading_label.grid(row=0)
-
-        self.end_game_button = Button(self.game_frame, text="End Game",
-                                      font=("Arial",16,"bold"),
-                                      fg="#FFFFFF", bg="#990000", width="10",
-                                      command=self.close_play)
-        self.end_game_button.grid(row=1)
-
-    def close_play(self):
-        # reshow root ie choose rounds and end current
-        # game / allow new game to start
-        root.deiconify()
-        self.play_box.destroy()
 
 # main routine
 if __name__ == "__main__":
